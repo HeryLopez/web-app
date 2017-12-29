@@ -1,8 +1,6 @@
 node {
     /* Variables */   
     def app
-    def user
-    def pass
        
     stage('Clone repository') {
         /* Github est à jour dans l'espace de travail */ 
