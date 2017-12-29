@@ -16,9 +16,9 @@ node {
        
     stage('Login Docker Hub') {  
         /* Recuperation de l'utilisateur et le pass */
-        withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB', usernameVariable: 'DOCKER_HUB_USER', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-            user = $DOCKER_HUB_USER
-            pass = $DOCKER_HUB_PASSWORD        
+        withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            user = "$USERNAME"
+            pass = "$PASSWORD"      
             echo "User: " + user
             echo "Pass: " + pass
         }
