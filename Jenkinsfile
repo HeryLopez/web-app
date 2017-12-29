@@ -14,8 +14,8 @@ node {
     
     stage('Push image') {             
         
-        user = $hub.docker.com_user
-        pass = $hub.docker.com_password
+        user = $DOCKER_HUB_USER
+        pass = $DOCKER_HUB_PASSWORD
         
         echo "User: " + user
         echo "Pass: " + pass
