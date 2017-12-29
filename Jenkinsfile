@@ -15,19 +15,16 @@ node {
     }
        
     stage('Login Docker Hub') {  
-        /* Recuperation de l'utilisateur et le pass */
-        withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            user = "$USERNAME"
-            pass = "$PASSWORD"      
-            echo "User: " + user
-            echo "Pass: " + pass
-        }
-       
         /* Login dans le docker hub */
-        docker.withRegistry('https://registry.hub.docker.com', '293fb43d-ca16-48f1-998a-17ef5c08ffe9') {
-            sh "docker login -u hlopezr -p Hlopez1056 https://index.docker.io/v1/"       
-        }                             
-       
+        withCredentials([usernamePassword(credentialsId: 'DOCKER_HUB', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {                       
+            sh "docker login -u $USERNAME -p $PASSWORD https://index.docker.io/v1/"       
+        }
+             
+        /*
+        docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_HUB') {
+            sh "docker login -u $USERNAME -p $PASSWORD https://index.docker.io/v1/"       
+        } 
+        */       
     }
    
     stage('Push image') {  
