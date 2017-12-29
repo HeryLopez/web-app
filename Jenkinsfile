@@ -1,5 +1,7 @@
 node {
     def app
+    def user
+    def pass
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
         checkout scm
@@ -9,7 +11,15 @@ node {
         app = docker.build("hlopezr/nginx-server:${env.BUILD_NUMBER}")
     }
     
+    
     stage('Push image') {             
+        
+        user = $hub.docker.com_user
+        pass = $hub.docker.com_password
+        
+        echo "User: " + user
+        echo "Pass: " + pass
+        
         docker.withRegistry('https://registry.hub.docker.com', '293fb43d-ca16-48f1-998a-17ef5c08ffe9') {
             sh "docker login -u hlopezr -p Hlopez1056 https://index.docker.io/v1/"       
         }                             
