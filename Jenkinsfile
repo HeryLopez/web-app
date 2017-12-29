@@ -1,5 +1,5 @@
 node {
-    set +x
+   
     def app
     def user
     def pass
